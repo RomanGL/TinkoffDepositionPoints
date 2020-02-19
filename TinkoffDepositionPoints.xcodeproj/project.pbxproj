@@ -25,6 +25,7 @@
 		4191A49623FC1FF5007C1A3D /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4191A49523FC1FF5007C1A3D /* ApiError.swift */; };
 		4191A49823FD2229007C1A3D /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4191A49723FD2229007C1A3D /* ResponseError.swift */; };
 		4191A49A23FD3567007C1A3D /* MKMapViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4191A49923FD3567007C1A3D /* MKMapViewExtensions.swift */; };
+		4191A49C23FD43D2007C1A3D /* DepositionPointsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4191A49B23FD43D2007C1A3D /* DepositionPointsService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		4191A49523FC1FF5007C1A3D /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 		4191A49723FD2229007C1A3D /* ResponseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseError.swift; sourceTree = "<group>"; };
 		4191A49923FD3567007C1A3D /* MKMapViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapViewExtensions.swift; sourceTree = "<group>"; };
+		4191A49B23FD43D2007C1A3D /* DepositionPointsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositionPointsService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 			children = (
 				418768AC23FBDE6C0053ECC3 /* ApiService.swift */,
 				4191A49523FC1FF5007C1A3D /* ApiError.swift */,
+				4191A49B23FD43D2007C1A3D /* DepositionPointsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 				4186BA7523F69C06002D8B8E /* DepositionPoint.swift in Sources */,
 				418768A723FBCFAA0053ECC3 /* ResultCode.swift in Sources */,
 				418768A323FBC4150053ECC3 /* MapDepositionPoint.swift in Sources */,
+				4191A49C23FD43D2007C1A3D /* DepositionPointsService.swift in Sources */,
 				4186BA6423F695E1002D8B8E /* MapViewController.swift in Sources */,
 				4186BA6023F695E1002D8B8E /* AppDelegate.swift in Sources */,
 				418768AD23FBDE6C0053ECC3 /* ApiService.swift in Sources */,

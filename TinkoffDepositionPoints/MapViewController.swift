@@ -24,6 +24,10 @@ class MapViewController: UIViewController {
     }
     
     private func loadData() {
+        DepositionPointsService.shared.getPoints(latitude: MapViewController.defaultLocation.coordinate.latitude,
+                                                 longitude: MapViewController.defaultLocation.coordinate.longitude,
+                                                 radius: Int(MapViewController.defaultViewRadius))
+        
         ApiService.shared.getDepositionPoints(latitude: MapViewController.defaultLocation.coordinate.latitude,
                                               longitude: MapViewController.defaultLocation.coordinate.longitude,
                                               radius: Int(MapViewController.defaultViewRadius))
