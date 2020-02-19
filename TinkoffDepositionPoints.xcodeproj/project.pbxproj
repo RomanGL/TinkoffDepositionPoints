@@ -22,6 +22,9 @@
 		418768AD23FBDE6C0053ECC3 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418768AC23FBDE6C0053ECC3 /* ApiService.swift */; };
 		418768AF23FBDEED0053ECC3 /* DepositionPartner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418768AE23FBDEED0053ECC3 /* DepositionPartner.swift */; };
 		418768B323FBE1D70053ECC3 /* DepositionPartnersPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418768B223FBE1D70053ECC3 /* DepositionPartnersPayload.swift */; };
+		4191A49623FC1FF5007C1A3D /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4191A49523FC1FF5007C1A3D /* ApiError.swift */; };
+		4191A49823FD2229007C1A3D /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4191A49723FD2229007C1A3D /* ResponseError.swift */; };
+		4191A49A23FD3567007C1A3D /* MKMapViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4191A49923FD3567007C1A3D /* MKMapViewExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +45,9 @@
 		418768AC23FBDE6C0053ECC3 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		418768AE23FBDEED0053ECC3 /* DepositionPartner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositionPartner.swift; sourceTree = "<group>"; };
 		418768B223FBE1D70053ECC3 /* DepositionPartnersPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositionPartnersPayload.swift; sourceTree = "<group>"; };
+		4191A49523FC1FF5007C1A3D /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
+		4191A49723FD2229007C1A3D /* ResponseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseError.swift; sourceTree = "<group>"; };
+		4191A49923FD3567007C1A3D /* MKMapViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapViewExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +89,7 @@
 				4186BA6823F695E1002D8B8E /* Assets.xcassets */,
 				4186BA6A23F695E1002D8B8E /* LaunchScreen.storyboard */,
 				4186BA6D23F695E1002D8B8E /* Info.plist */,
+				4191A49923FD3567007C1A3D /* MKMapViewExtensions.swift */,
 			);
 			path = TinkoffDepositionPoints;
 			sourceTree = "<group>";
@@ -100,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				418768AC23FBDE6C0053ECC3 /* ApiService.swift */,
+				4191A49523FC1FF5007C1A3D /* ApiError.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -118,6 +126,7 @@
 			children = (
 				418768A623FBCFAA0053ECC3 /* ResultCode.swift */,
 				418768A823FBDC1C0053ECC3 /* Response.swift */,
+				4191A49723FD2229007C1A3D /* ResponseError.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -214,9 +223,12 @@
 				418768AD23FBDE6C0053ECC3 /* ApiService.swift in Sources */,
 				418768AF23FBDEED0053ECC3 /* DepositionPartner.swift in Sources */,
 				4186BA6223F695E1002D8B8E /* SceneDelegate.swift in Sources */,
+				4191A49A23FD3567007C1A3D /* MKMapViewExtensions.swift in Sources */,
 				418768B323FBE1D70053ECC3 /* DepositionPartnersPayload.swift in Sources */,
 				418768AB23FBDE050053ECC3 /* DepositionPointsPayload.swift in Sources */,
+				4191A49623FC1FF5007C1A3D /* ApiError.swift in Sources */,
 				4186BA7723F69DA3002D8B8E /* PointLocation.swift in Sources */,
+				4191A49823FD2229007C1A3D /* ResponseError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

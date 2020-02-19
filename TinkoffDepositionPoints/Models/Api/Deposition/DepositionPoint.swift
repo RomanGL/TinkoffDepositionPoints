@@ -11,9 +11,9 @@ import Foundation
 struct DepositionPoint: Decodable {
     let externalId: String
     let partnerName: String
-    let workHours: String
-    let phones: String
     let fullAddress: String
+    let workHours: String?
+    let phones: String?
     
     let location: PointLocation
 }

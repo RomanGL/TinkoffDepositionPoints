@@ -9,7 +9,7 @@
 import Foundation
 
 /// Представляет ответ API Tinkoff.
-final class Response<Payload: Decodable>: Decodable {
+struct Response<Payload: Decodable>: Decodable {
     let resultCode: ResultCode
     let payload: Payload?
     let trackingId: String?

@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,6 +17,9 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5Ju-xh-vIB">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="2Na-0U-g9k"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -25,6 +29,7 @@
                             <constraint firstItem="5Ju-xh-vIB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="bml-56-NET"/>
                             <constraint firstItem="5Ju-xh-vIB" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="hF6-pi-V7s"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="NSx-K7-GBy"/>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="5Ju-xh-vIB" id="owM-BO-wXe"/>

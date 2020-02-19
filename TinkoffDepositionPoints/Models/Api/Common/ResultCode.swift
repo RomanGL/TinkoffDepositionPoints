@@ -8,10 +8,10 @@
 
 import Foundation
 
+/// Представляет код ответа API.
 enum ResultCode {
     case ok
-    case internalError
-    case unknownError(String)
+    case other(String)
 }
 
 // MARK: - Decodable
@@ -22,10 +22,9 @@ extension ResultCode: Decodable {
         switch label {
         case "OK":
             self = .ok
-        case "INTERNAL_ERROR":
-            self = .internalError
+            
         default:
-            self = .unknownError(label)
+            self = .other(label)
         }
     }
 }

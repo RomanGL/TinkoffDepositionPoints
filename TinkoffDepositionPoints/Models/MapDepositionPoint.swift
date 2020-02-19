@@ -23,6 +23,10 @@ extension MapDepositionPoint: MKAnnotation {
         return point.partnerName
     }
     
+    var subtitle: String? {
+        return point.fullAddress
+    }
+    
     var coordinate: CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: point.location.latitude,
                                       longitude: point.location.longitude)
