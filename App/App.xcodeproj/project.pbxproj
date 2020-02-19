@@ -13,23 +13,29 @@
 		4186BA6723F695E1002D8B8E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4186BA6523F695E1002D8B8E /* Main.storyboard */; };
 		4186BA6923F695E1002D8B8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4186BA6823F695E1002D8B8E /* Assets.xcassets */; };
 		4186BA6C23F695E1002D8B8E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4186BA6A23F695E1002D8B8E /* LaunchScreen.storyboard */; };
-		4186BA7523F69C06002D8B8E /* DepositionPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4186BA7423F69C06002D8B8E /* DepositionPoint.swift */; };
-		4186BA7723F69DA3002D8B8E /* PointLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4186BA7623F69DA3002D8B8E /* PointLocation.swift */; };
 		418768A323FBC4150053ECC3 /* MapDepositionPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418768A223FBC4150053ECC3 /* MapDepositionPoint.swift */; };
-		418768A723FBCFAA0053ECC3 /* ResultCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418768A623FBCFAA0053ECC3 /* ResultCode.swift */; };
-		418768A923FBDC1C0053ECC3 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418768A823FBDC1C0053ECC3 /* Response.swift */; };
-		418768AB23FBDE050053ECC3 /* DepositionPointsPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418768AA23FBDE050053ECC3 /* DepositionPointsPayload.swift */; };
-		418768AD23FBDE6C0053ECC3 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418768AC23FBDE6C0053ECC3 /* ApiService.swift */; };
-		418768AF23FBDEED0053ECC3 /* DepositionPartner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418768AE23FBDEED0053ECC3 /* DepositionPartner.swift */; };
-		418768B323FBE1D70053ECC3 /* DepositionPartnersPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418768B223FBE1D70053ECC3 /* DepositionPartnersPayload.swift */; };
-		4191A49623FC1FF5007C1A3D /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4191A49523FC1FF5007C1A3D /* ApiError.swift */; };
-		4191A49823FD2229007C1A3D /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4191A49723FD2229007C1A3D /* ResponseError.swift */; };
 		4191A49A23FD3567007C1A3D /* MKMapViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4191A49923FD3567007C1A3D /* MKMapViewExtensions.swift */; };
 		4191A49C23FD43D2007C1A3D /* DepositionPointsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4191A49B23FD43D2007C1A3D /* DepositionPointsService.swift */; };
+		4191A4EC23FD6C00007C1A3D /* TinkoffApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4191A4EB23FD6C00007C1A3D /* TinkoffApi.framework */; };
+		4191A4ED23FD6C00007C1A3D /* TinkoffApi.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4191A4EB23FD6C00007C1A3D /* TinkoffApi.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		4191A4D123FD5BE5007C1A3D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4191A4ED23FD6C00007C1A3D /* TinkoffApi.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		4186BA5C23F695E1002D8B8E /* TinkoffDepositionPoints.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinkoffDepositionPoints.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4186BA5C23F695E1002D8B8E /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4186BA5F23F695E1002D8B8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4186BA6123F695E1002D8B8E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		4186BA6323F695E1002D8B8E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -37,19 +43,10 @@
 		4186BA6823F695E1002D8B8E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4186BA6B23F695E1002D8B8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4186BA6D23F695E1002D8B8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4186BA7423F69C06002D8B8E /* DepositionPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositionPoint.swift; sourceTree = "<group>"; };
-		4186BA7623F69DA3002D8B8E /* PointLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointLocation.swift; sourceTree = "<group>"; };
 		418768A223FBC4150053ECC3 /* MapDepositionPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDepositionPoint.swift; sourceTree = "<group>"; };
-		418768A623FBCFAA0053ECC3 /* ResultCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCode.swift; sourceTree = "<group>"; };
-		418768A823FBDC1C0053ECC3 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
-		418768AA23FBDE050053ECC3 /* DepositionPointsPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositionPointsPayload.swift; sourceTree = "<group>"; };
-		418768AC23FBDE6C0053ECC3 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
-		418768AE23FBDEED0053ECC3 /* DepositionPartner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositionPartner.swift; sourceTree = "<group>"; };
-		418768B223FBE1D70053ECC3 /* DepositionPartnersPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositionPartnersPayload.swift; sourceTree = "<group>"; };
-		4191A49523FC1FF5007C1A3D /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
-		4191A49723FD2229007C1A3D /* ResponseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseError.swift; sourceTree = "<group>"; };
 		4191A49923FD3567007C1A3D /* MKMapViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapViewExtensions.swift; sourceTree = "<group>"; };
 		4191A49B23FD43D2007C1A3D /* DepositionPointsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositionPointsService.swift; sourceTree = "<group>"; };
+		4191A4EB23FD6C00007C1A3D /* TinkoffApi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TinkoffApi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4191A4EC23FD6C00007C1A3D /* TinkoffApi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,20 +64,21 @@
 		4186BA5323F695E1002D8B8E = {
 			isa = PBXGroup;
 			children = (
-				4186BA5E23F695E1002D8B8E /* TinkoffDepositionPoints */,
+				4186BA5E23F695E1002D8B8E /* App */,
 				4186BA5D23F695E1002D8B8E /* Products */,
+				4191A4CD23FD5BE5007C1A3D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		4186BA5D23F695E1002D8B8E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4186BA5C23F695E1002D8B8E /* TinkoffDepositionPoints.app */,
+				4186BA5C23F695E1002D8B8E /* App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4186BA5E23F695E1002D8B8E /* TinkoffDepositionPoints */ = {
+		4186BA5E23F695E1002D8B8E /* App */ = {
 			isa = PBXGroup;
 			children = (
 				418768A423FBC6270053ECC3 /* Services */,
@@ -93,13 +92,12 @@
 				4186BA6D23F695E1002D8B8E /* Info.plist */,
 				4191A49923FD3567007C1A3D /* MKMapViewExtensions.swift */,
 			);
-			path = TinkoffDepositionPoints;
+			path = App;
 			sourceTree = "<group>";
 		};
 		4186BA7323F69BF2002D8B8E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				418768A523FBCBC10053ECC3 /* Api */,
 				418768A223FBC4150053ECC3 /* MapDepositionPoint.swift */,
 			);
 			path = Models;
@@ -108,62 +106,38 @@
 		418768A423FBC6270053ECC3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				418768AC23FBDE6C0053ECC3 /* ApiService.swift */,
-				4191A49523FC1FF5007C1A3D /* ApiError.swift */,
 				4191A49B23FD43D2007C1A3D /* DepositionPointsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
 		};
-		418768A523FBCBC10053ECC3 /* Api */ = {
+		4191A4CD23FD5BE5007C1A3D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				418768B123FBE1B90053ECC3 /* Deposition */,
-				418768B023FBDEFB0053ECC3 /* Common */,
+				4191A4EB23FD6C00007C1A3D /* TinkoffApi.framework */,
 			);
-			path = Api;
-			sourceTree = "<group>";
-		};
-		418768B023FBDEFB0053ECC3 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				418768A623FBCFAA0053ECC3 /* ResultCode.swift */,
-				418768A823FBDC1C0053ECC3 /* Response.swift */,
-				4191A49723FD2229007C1A3D /* ResponseError.swift */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
-		418768B123FBE1B90053ECC3 /* Deposition */ = {
-			isa = PBXGroup;
-			children = (
-				4186BA7423F69C06002D8B8E /* DepositionPoint.swift */,
-				4186BA7623F69DA3002D8B8E /* PointLocation.swift */,
-				418768AA23FBDE050053ECC3 /* DepositionPointsPayload.swift */,
-				418768AE23FBDEED0053ECC3 /* DepositionPartner.swift */,
-				418768B223FBE1D70053ECC3 /* DepositionPartnersPayload.swift */,
-			);
-			path = Deposition;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4186BA5B23F695E1002D8B8E /* TinkoffDepositionPoints */ = {
+		4186BA5B23F695E1002D8B8E /* App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4186BA7023F695E1002D8B8E /* Build configuration list for PBXNativeTarget "TinkoffDepositionPoints" */;
+			buildConfigurationList = 4186BA7023F695E1002D8B8E /* Build configuration list for PBXNativeTarget "App" */;
 			buildPhases = (
 				4186BA5823F695E1002D8B8E /* Sources */,
 				4186BA5923F695E1002D8B8E /* Frameworks */,
 				4186BA5A23F695E1002D8B8E /* Resources */,
+				4191A4D123FD5BE5007C1A3D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = TinkoffDepositionPoints;
+			name = App;
 			productName = TinkoffDepositionPoints;
-			productReference = 4186BA5C23F695E1002D8B8E /* TinkoffDepositionPoints.app */;
+			productReference = 4186BA5C23F695E1002D8B8E /* App.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -181,7 +155,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4186BA5723F695E1002D8B8E /* Build configuration list for PBXProject "TinkoffDepositionPoints" */;
+			buildConfigurationList = 4186BA5723F695E1002D8B8E /* Build configuration list for PBXProject "App" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -194,7 +168,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4186BA5B23F695E1002D8B8E /* TinkoffDepositionPoints */,
+				4186BA5B23F695E1002D8B8E /* App */,
 			);
 		};
 /* End PBXProject section */
@@ -217,22 +191,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				418768A923FBDC1C0053ECC3 /* Response.swift in Sources */,
-				4186BA7523F69C06002D8B8E /* DepositionPoint.swift in Sources */,
-				418768A723FBCFAA0053ECC3 /* ResultCode.swift in Sources */,
 				418768A323FBC4150053ECC3 /* MapDepositionPoint.swift in Sources */,
 				4191A49C23FD43D2007C1A3D /* DepositionPointsService.swift in Sources */,
 				4186BA6423F695E1002D8B8E /* MapViewController.swift in Sources */,
 				4186BA6023F695E1002D8B8E /* AppDelegate.swift in Sources */,
-				418768AD23FBDE6C0053ECC3 /* ApiService.swift in Sources */,
-				418768AF23FBDEED0053ECC3 /* DepositionPartner.swift in Sources */,
 				4186BA6223F695E1002D8B8E /* SceneDelegate.swift in Sources */,
 				4191A49A23FD3567007C1A3D /* MKMapViewExtensions.swift in Sources */,
-				418768B323FBE1D70053ECC3 /* DepositionPartnersPayload.swift in Sources */,
-				418768AB23FBDE050053ECC3 /* DepositionPointsPayload.swift in Sources */,
-				4191A49623FC1FF5007C1A3D /* ApiError.swift in Sources */,
-				4186BA7723F69DA3002D8B8E /* PointLocation.swift in Sources */,
-				4191A49823FD2229007C1A3D /* ResponseError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,7 +341,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = TinkoffDepositionPoints/Info.plist;
+				DEVELOPMENT_ASSET_PATHS = "";
+				INFOPLIST_FILE = App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -394,7 +359,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = TinkoffDepositionPoints/Info.plist;
+				DEVELOPMENT_ASSET_PATHS = "";
+				INFOPLIST_FILE = App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -409,7 +375,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4186BA5723F695E1002D8B8E /* Build configuration list for PBXProject "TinkoffDepositionPoints" */ = {
+		4186BA5723F695E1002D8B8E /* Build configuration list for PBXProject "App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4186BA6E23F695E1002D8B8E /* Debug */,
@@ -418,7 +384,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4186BA7023F695E1002D8B8E /* Build configuration list for PBXNativeTarget "TinkoffDepositionPoints" */ = {
+		4186BA7023F695E1002D8B8E /* Build configuration list for PBXNativeTarget "App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4186BA7123F695E1002D8B8E /* Debug */,

@@ -1,6 +1,6 @@
 //
 //  ApiService.swift
-//  TinkoffDepositionPoints
+//  TinkoffApi
 //
 //  Created by r.gladkikh on 18.02.2020.
 //  Copyright © 2020 r.gladkikh. All rights reserved.
@@ -8,40 +8,16 @@
 
 import Foundation
 
-typealias ApiResult<Payload: Decodable> = Result<Payload, Error>
-typealias Completion<Payload: Decodable> = (ApiResult<Payload>) -> Void
+public typealias Completion<Payload: Decodable> = (Result<Payload, Error>) -> Void
 
-final class ApiService {
+public class TinkoffApi {
     private static let apiBase = "https://api.tinkoff.ru/v1/"
     private static let supportedMimeType = "application/json"
-    
-    static let shared = ApiService()
-    
-    private init() {}
-}
-
-// MARK: - DepositionPoints
-extension ApiService {
-    func getDepositionPartners(completion: @escaping Completion<DepositionPartnersPayload>) {
-        let endpoint = "deposition_partners?accountType=Credit"
-        let url = getUrl(endpoint: endpoint)
-        getResponse(from: url, completion: completion)
-    }
-    
-    func getDepositionPoints(latitude: Double,
-                             longitude: Double,
-                             radius: Int,
-                             completion: @escaping Completion<DepositionPointsPayload>) {
-        let endpoint = "deposition_points?latitude=\(latitude)&longitude=\(longitude)&radius=\(radius)"
-        let url = getUrl(endpoint: endpoint)
-        
-        getResponse(from: url, completion: completion)
-    }
 }
 
 // MARK: - Utils
-private extension ApiService {
-    private func getResponse<Payload: Decodable>(from url: URL, completion: @escaping Completion<Payload>) {
+extension TinkoffApi {
+    func getResponse<Payload: Decodable>(from url: URL, completion: @escaping Completion<Payload>) {
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
                 completion(.failure(ApiError(error)))
@@ -58,8 +34,8 @@ private extension ApiService {
                 return
             }
             
-            guard let mime = response.mimeType, mime.contains(ApiService.supportedMimeType) else {
-                completion(.failure(ApiError("Wrong MIME type. Expected: \(ApiService.supportedMimeType)")))
+            guard let mime = response.mimeType, mime.contains(TinkoffApi.supportedMimeType) else {
+                completion(.failure(ApiError("Wrong MIME type. Expected: \(TinkoffApi.supportedMimeType)")))
                 return
             }
             
@@ -87,8 +63,8 @@ private extension ApiService {
         task.resume()
     }
     
-    private func getUrl(endpoint: String) -> URL {
-        let urlString = "\(ApiService.apiBase)\(endpoint)"
+    func getUrl(endpoint: String) -> URL {
+        let urlString = "\(TinkoffApi.apiBase)\(endpoint)"
         return URL(string: urlString)!
     }
 }

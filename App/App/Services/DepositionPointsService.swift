@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import TinkoffApi
 
 typealias PartnersCompletion = (Result<[DepositionPartner], Error>) -> Void
 
 final class DepositionPointsService {
-    private let apiService: ApiService = ApiService.shared
+    private let depositionApi = DepositionApi.shared
     private var partners: [DepositionPartner]?
     
     static let shared = DepositionPointsService()
@@ -26,8 +27,7 @@ final class DepositionPointsService {
             return
         }
         
-        apiService.getDepositionPartners() { [weak self] payload in
-            completion(payload)
+        depositionApi.getDepositionPartners() { [weak self] payload in
             switch payload {
             case .success(let receivedPartners):
                 self?.partners = receivedPartners
@@ -43,12 +43,12 @@ final class DepositionPointsService {
         let group = DispatchGroup()
         
         group.enter()
-        apiService.getDepositionPartners() { payload in
+        depositionApi.getDepositionPartners() { payload in
             group.leave()
         }
         
         group.enter()
-        apiService.getDepositionPoints(latitude: latitude, longitude: longitude, radius: radius)
+        depositionApi.getDepositionPoints(latitude: latitude, longitude: longitude, radius: radius)
         { payload in
             group.leave()
         }

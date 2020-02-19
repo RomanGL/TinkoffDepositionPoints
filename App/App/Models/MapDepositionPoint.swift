@@ -8,6 +8,7 @@
 
 import Foundation
 import MapKit
+import TinkoffApi
 
 final class MapDepositionPoint: NSObject {
     private let point: DepositionPoint

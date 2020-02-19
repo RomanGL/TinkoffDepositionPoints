@@ -1,6 +1,6 @@
 //
 //  ApiError.swift
-//  TinkoffDepositionPoints
+//  TinkoffApi
 //
 //  Created by r.gladkikh on 18.02.2020.
 //  Copyright © 2020 r.gladkikh. All rights reserved.
@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct ApiError: LocalizedError {
-    let innerError: Error?
-    let errorDescription: String?
+public struct ApiError: LocalizedError {
+    public let innerError: Error?
+    public let errorDescription: String?
 }
 
 // MARK: - Initializers

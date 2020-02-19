@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import TinkoffApi
 
 class MapViewController: UIViewController {
     /// Location of Moscow
@@ -19,7 +20,6 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         centerMapOn(location: MapViewController.defaultLocation)
-        
         loadData()
     }
     
@@ -28,9 +28,9 @@ class MapViewController: UIViewController {
                                                  longitude: MapViewController.defaultLocation.coordinate.longitude,
                                                  radius: Int(MapViewController.defaultViewRadius))
         
-        ApiService.shared.getDepositionPoints(latitude: MapViewController.defaultLocation.coordinate.latitude,
-                                              longitude: MapViewController.defaultLocation.coordinate.longitude,
-                                              radius: Int(MapViewController.defaultViewRadius))
+        DepositionApi.shared.getDepositionPoints(latitude: MapViewController.defaultLocation.coordinate.latitude,
+                                                 longitude: MapViewController.defaultLocation.coordinate.longitude,
+                                                 radius: Int(MapViewController.defaultViewRadius))
         { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
@@ -42,10 +42,6 @@ class MapViewController: UIViewController {
                 }
             }
         }
-    }
-    
-    private func handlePartners(_ response: Response<DepositionPartnersPayload>) {
-        
     }
     
     private func handlePoints(_ points: [DepositionPoint]) {
@@ -61,9 +57,9 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         let radius = Int(mapView.currentRadius())
         
-        ApiService.shared.getDepositionPoints(latitude: mapView.centerCoordinate.latitude,
-                                              longitude: mapView.centerCoordinate.longitude,
-                                              radius: radius)
+        DepositionApi.shared.getDepositionPoints(latitude: mapView.centerCoordinate.latitude,
+                                                 longitude: mapView.centerCoordinate.longitude,
+                                                 radius: radius)
         { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
