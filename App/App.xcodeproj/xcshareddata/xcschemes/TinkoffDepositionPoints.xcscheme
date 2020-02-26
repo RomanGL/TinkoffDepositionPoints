@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4191A4C123FD5B10007C1A3D"
-               BuildableName = "Api.framework"
+               BuildableName = "TinkoffApi.framework"
                BlueprintName = "TinkoffApi"
                ReferencedContainer = "container:../ApiModels/TinkoffApi.xcodeproj">
             </BuildableReference>
