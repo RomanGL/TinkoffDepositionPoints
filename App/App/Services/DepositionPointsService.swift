@@ -10,51 +10,66 @@ import Foundation
 import TinkoffApi
 
 typealias PartnersCompletion = (Result<[DepositionPartner], Error>) -> Void
+typealias ObtainPointsCompletion = (Result<[MapDepositionPoint], Error>) -> Void
 
 final class DepositionPointsService {
     private let depositionApi = DepositionApi.shared
-    private var partners: [DepositionPartner]?
+    private var cachedPartners: [DepositionPartner]?
     
     static let shared = DepositionPointsService()
     
     private init() {}
     
-    /// Возвращает кэшированную коллекцию партнеров или делает сетевой запрос для их получения.
-    /// - Parameter completion: Вызывается по готовности результата.
-    func getPartners(completion: @escaping PartnersCompletion) {
-        if let partners = partners {
-            completion(.success(partners))
-            return
-        }
+    func obtainPoints(latitude: Double, longitude: Double, radius: Int, completion: @escaping ObtainPointsCompletion) {
+        var partnersPayload: DepositionPartnersPayload?
+        var pointsPayload: DepositionPointsPayload?
         
-        depositionApi.getDepositionPartners() { [weak self] payload in
-            switch payload {
-            case .success(let receivedPartners):
-                self?.partners = receivedPartners
-                completion(.success(receivedPartners))
-                
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
-    
-    func getPoints(latitude: Double, longitude: Double, radius: Int) {
         let group = DispatchGroup()
         
-        group.enter()
-        depositionApi.getDepositionPartners() { payload in
-            group.leave()
+        if let cachedPartners = cachedPartners {
+            partnersPayload = cachedPartners
+        } else {
+            group.enter()
+            
+            depositionApi.obtainPartners() { [weak self] payload in
+                if case .success(let partners) = payload {
+                    partnersPayload = partners
+                    self?.cachedPartners = partners
+                }
+                
+                group.leave()
+            }
         }
         
         group.enter()
-        depositionApi.getDepositionPoints(latitude: latitude, longitude: longitude, radius: radius)
+        
+        depositionApi.obtainPoints(latitude: latitude, longitude: longitude, radius: radius)
         { payload in
+            if case .success(let points) = payload {
+                pointsPayload = points
+            }
+            
             group.leave()
         }
         
-        group.notify(queue: DispatchQueue.global(qos: .utility)) {
-            print("Loaded")
+        group.notify(queue: DispatchQueue.global(qos: .utility)) { [weak self] in
+            guard let partners = partnersPayload,
+                  let points = pointsPayload else {
+                    completion(.failure(AppError("At least one request was failed.")))
+                    return
+            }
+            
+            let mapPoints = self?.getMapPoints(partners: partners, points: points)
+            completion(.success(mapPoints ?? []))
         }
+    }
+}
+
+private extension DepositionPointsService {
+    private func getMapPoints(partners: [DepositionPartner], points: [DepositionPoint]) -> [MapDepositionPoint] {
+        return points.map { point in
+            let partner = partners.first { $0.id == point.partnerName }
+            return partner != nil ? MapDepositionPoint(point, partner: partner!) : nil
+        }.compactMap { $0 }
     }
 }

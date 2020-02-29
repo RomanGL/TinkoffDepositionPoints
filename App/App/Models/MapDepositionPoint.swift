@@ -12,16 +12,31 @@ import TinkoffApi
 
 final class MapDepositionPoint: NSObject {
     private let point: DepositionPoint
+    private let partner: DepositionPartner
     
-    init(_ point: DepositionPoint) {
+    init(_ point: DepositionPoint, partner: DepositionPartner) {
         self.point = point
+        self.partner = partner
     }
+}
+
+// MARK: - Properties
+extension MapDepositionPoint {
+    var previewImage: String { partner.picture }
+    
+    var color: UIColor {
+        point.partnerName == "TINKOFF"
+            ? UIColor.fromRGBA(red: 255, green: 241, blue: 85)
+            : .darkGray
+    }
+    
+    var glyph: String { String(partner.name.first ?? "?") }
 }
 
 // MARK: - MKAnnotation
 extension MapDepositionPoint: MKAnnotation {
     var title: String? {
-        return point.partnerName
+        return partner.name
     }
     
     var subtitle: String? {

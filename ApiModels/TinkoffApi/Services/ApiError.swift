@@ -8,25 +8,28 @@
 
 import Foundation
 
-public struct ApiError: LocalizedError {
-    public let innerError: Error?
-    public let errorDescription: String?
+public enum ApiError {
+    case unknownError
+    case emptyResponse
+    case serverError(code: Int)
+    case wrongMimeType(mime: String?)
+    case parsingFailed(error: Error)
 }
 
-// MARK: - Initializers
-extension ApiError {
-    init(_ message: String) {
-        errorDescription = message
-        innerError = nil
-    }
-    
-    init(_ error: Error?) {
-        innerError = error
-        errorDescription = error?.localizedDescription ?? "Unknown error."
-    }
-    
-    init(message: String?, error: Error?) {
-        errorDescription = message ?? error?.localizedDescription ?? "Unknown error."
-        innerError = error
+// MARK: - LocalizedError
+extension ApiError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .emptyResponse:
+            return "A response data is not exists."
+        case .serverError(let code):
+            return "Server error. Code: \(code)."
+        case .wrongMimeType(let mime):
+            return "Wrong MIME type: \(mime ?? "empty")."
+        case .parsingFailed(let error):
+            return "JSON parsing failed: \(error.localizedDescription)"
+        case .unknownError:
+            return "Unknown error."
+        }
     }
 }

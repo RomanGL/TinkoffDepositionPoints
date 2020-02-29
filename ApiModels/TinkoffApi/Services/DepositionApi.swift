@@ -16,20 +16,20 @@ public final class DepositionApi: TinkoffApi {
 
 // MARK: - API Methods
 public extension DepositionApi {
-    func getDepositionPartners(completion: @escaping Completion<DepositionPartnersPayload>) {
+    func obtainPartners(completion: @escaping ApiCompletion<DepositionPartnersPayload>) {
         let endpoint = "deposition_partners?accountType=Credit"
         let url = getUrl(endpoint: endpoint)
         
-        getResponse(from: url, completion: completion)
+        obtainResponse(from: url, completion: completion)
     }
     
-    func getDepositionPoints(latitude: Double,
-                             longitude: Double,
-                             radius: Int,
-                             completion: @escaping Completion<DepositionPointsPayload>) {
+    func obtainPoints(latitude: Double,
+                      longitude: Double,
+                      radius: Int,
+                      completion: @escaping ApiCompletion<DepositionPointsPayload>) {
         let endpoint = "deposition_points?latitude=\(latitude)&longitude=\(longitude)&radius=\(radius)"
         let url = getUrl(endpoint: endpoint)
         
-        getResponse(from: url, completion: completion)
+        obtainResponse(from: url, completion: completion)
     }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public typealias Completion<Payload: Decodable> = (Result<Payload, Error>) -> Void
+public typealias ApiCompletion<Payload: Decodable> = (Result<Payload, Error>) -> Void
 
 public class TinkoffApi {
     private static let apiBase = "https://api.tinkoff.ru/v1/"
@@ -17,25 +17,30 @@ public class TinkoffApi {
 
 // MARK: - Utils
 extension TinkoffApi {
-    func getResponse<Payload: Decodable>(from url: URL, completion: @escaping Completion<Payload>) {
+    func obtainResponse<Payload: Decodable>(from url: URL, completion: @escaping ApiCompletion<Payload>) {
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error = error {
-                completion(.failure(ApiError(error)))
+            if error != nil {
+                completion(.failure(ApiError.unknownError))
                 return
             }
             
-            guard let data = data else {
-                completion(.failure(ApiError("Response data is not exists.")))
+            guard let response = response as? HTTPURLResponse else {
+                completion(.failure(ApiError.emptyResponse))
                 return
             }
             
-            guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
-                completion(.failure(ApiError("Server error.")))
+            guard (200...299).contains(response.statusCode) else {
+                completion(.failure(ApiError.serverError(code: response.statusCode)))
                 return
             }
             
             guard let mime = response.mimeType, mime.contains(TinkoffApi.supportedMimeType) else {
-                completion(.failure(ApiError("Wrong MIME type. Expected: \(TinkoffApi.supportedMimeType)")))
+                completion(.failure(ApiError.wrongMimeType(mime: response.mimeType)))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(ApiError.emptyResponse))
                 return
             }
             
@@ -56,7 +61,7 @@ extension TinkoffApi {
                 }
                 
             } catch {
-                completion(.failure(ApiError(message: "JSON parsing error.", error: error)))
+                completion(.failure(ApiError.parsingFailed(error: error)))
             }
         }
         

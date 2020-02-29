@@ -16,27 +16,31 @@ class MapViewController: UIViewController {
     private static let defaultViewRadius: CLLocationDistance = 1000 // Meters
     private static let mapAnnotationViewReuseId = "AnnotationViewId"
     
+    private let locationManager = CLLocationManager()
+    
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
-        centerMapOn(location: MapViewController.defaultLocation)
-        loadData()
+        mapView.register(MapPointMarkerView.self, forAnnotationViewWithReuseIdentifier: MapViewController.mapAnnotationViewReuseId)
+        
+        checkLocationAuthorizationStatus()
+        
+        let location = locationManager.location ?? MapViewController.defaultLocation
+        
+        centerMapOn(coordinate: location.coordinate, withRadius: MapViewController.defaultViewRadius)
+        loadPoints(around: location.coordinate, withRadius: MapViewController.defaultViewRadius)
     }
     
-    private func loadData() {
-        DepositionPointsService.shared.getPoints(latitude: MapViewController.defaultLocation.coordinate.latitude,
-                                                 longitude: MapViewController.defaultLocation.coordinate.longitude,
-                                                 radius: Int(MapViewController.defaultViewRadius))
-        
-        DepositionApi.shared.getDepositionPoints(latitude: MapViewController.defaultLocation.coordinate.latitude,
-                                                 longitude: MapViewController.defaultLocation.coordinate.longitude,
-                                                 radius: Int(MapViewController.defaultViewRadius))
-        { [weak self] result in
-            DispatchQueue.main.async {
+    private func loadPoints(around coordinate: CLLocationCoordinate2D, withRadius radius: CLLocationDistance) {
+        let radius = Int(mapView.currentRadius())
+        DepositionPointsService.shared.obtainPoints(latitude: coordinate.latitude,
+                                                    longitude: coordinate.longitude,
+                                                    radius: radius)
+        { result in
+            DispatchQueue.main.async { [weak self] in
                 switch result {
                 case .success(let points):
                     self?.handlePoints(points)
-                    
                 case .failure(let error):
                     self?.handleError(error)
                 }
@@ -44,33 +48,27 @@ class MapViewController: UIViewController {
         }
     }
     
-    private func handlePoints(_ points: [DepositionPoint]) {
+    private func handlePoints(_ points: [MapDepositionPoint]) {
         mapView.removeAnnotations(mapView.annotations)
+        mapView.addAnnotations(points)
+    }
+    
+    private func checkLocationAuthorizationStatus() {
+        if CLLocationManager.authorizationStatus() != .authorizedWhenInUse {
+            locationManager.requestWhenInUseAuthorization()
+        }
         
-        let mapPoints = points.map { point in MapDepositionPoint(point) }
-        mapView.addAnnotations(mapPoints)
+        mapView.showsUserLocation = true
     }
 }
 
 // MARK: - MKMapViewDelegate
 extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        let radius = Int(mapView.currentRadius())
+        let radius = mapView.currentRadius()
+        let currentCoordinate = mapView.centerCoordinate
         
-        DepositionApi.shared.getDepositionPoints(latitude: mapView.centerCoordinate.latitude,
-                                                 longitude: mapView.centerCoordinate.longitude,
-                                                 radius: radius)
-        { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let points):
-                    self?.handlePoints(points)
-                    
-                case .failure(let error):
-                    self?.handleError(error)
-                }
-            }
-        }
+        loadPoints(around: currentCoordinate, withRadius: radius)
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -96,10 +94,10 @@ private extension MapViewController {
 
 // MARK: - Utils
 private extension MapViewController {
-    private func centerMapOn(location: CLLocation) {
-        let coordinateRegion = MKCoordinateRegion.init(center: location.coordinate,
-                                                       latitudinalMeters: MapViewController.defaultViewRadius,
-                                                       longitudinalMeters: MapViewController.defaultViewRadius)
+    private func centerMapOn(coordinate: CLLocationCoordinate2D, withRadius radius: CLLocationDistance) {
+        let coordinateRegion = MKCoordinateRegion.init(center: coordinate,
+                                                       latitudinalMeters: radius,
+                                                       longitudinalMeters: radius)
         mapView.setRegion(coordinateRegion, animated: true)
     }
     
