@@ -10,7 +10,7 @@
         <!--Map View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="TinkoffDepositionPoints" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="Tinkoff_Deposition_Points" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -21,12 +21,60 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="2Na-0U-g9k"/>
                                 </connections>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tys-ko-SIE">
+                                <rect key="frame" x="344" y="398" width="50" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="QwM-UE-9UB"/>
+                                    <constraint firstAttribute="height" constant="50" id="baC-P7-Pjm"/>
+                                </constraints>
+                                <state key="normal" image="plus" catalog="system"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nfa-Vc-YcY">
+                                <rect key="frame" x="344" y="64" width="50" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="NtN-ae-CAz"/>
+                                    <constraint firstAttribute="width" constant="50" id="zJu-Sy-wEh"/>
+                                </constraints>
+                                <state key="normal" image="location" catalog="system"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="67Q-F0-oHm">
+                                <rect key="frame" x="344" y="458" width="50" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="6lU-1s-tZQ"/>
+                                    <constraint firstAttribute="width" constant="50" id="7hs-bL-dsu"/>
+                                </constraints>
+                                <state key="normal" image="minus" catalog="system"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="NSx-K7-GBy" firstAttribute="trailing" secondItem="Tys-ko-SIE" secondAttribute="trailing" constant="20" id="0F3-bQ-Go5"/>
+                            <constraint firstItem="67Q-F0-oHm" firstAttribute="top" secondItem="Tys-ko-SIE" secondAttribute="bottom" constant="10" id="MBk-8y-xa8"/>
                             <constraint firstAttribute="trailing" secondItem="5Ju-xh-vIB" secondAttribute="trailing" id="NDb-wj-F3U"/>
                             <constraint firstAttribute="bottom" secondItem="5Ju-xh-vIB" secondAttribute="bottom" id="Ri3-Bv-lna"/>
+                            <constraint firstItem="NSx-K7-GBy" firstAttribute="trailing" secondItem="67Q-F0-oHm" secondAttribute="trailing" constant="20" id="TK4-5m-KlS"/>
+                            <constraint firstItem="Tys-ko-SIE" firstAttribute="centerY" secondItem="NSx-K7-GBy" secondAttribute="centerY" constant="-30" id="XxY-cX-NJc"/>
                             <constraint firstItem="5Ju-xh-vIB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="bml-56-NET"/>
+                            <constraint firstItem="NSx-K7-GBy" firstAttribute="trailing" secondItem="Nfa-Vc-YcY" secondAttribute="trailing" constant="20" id="fue-sd-nzy"/>
+                            <constraint firstItem="Nfa-Vc-YcY" firstAttribute="top" secondItem="NSx-K7-GBy" secondAttribute="top" constant="20" id="gVe-Ev-iXr"/>
                             <constraint firstItem="5Ju-xh-vIB" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="hF6-pi-V7s"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NSx-K7-GBy"/>
@@ -40,4 +88,9 @@
             <point key="canvasLocation" x="137.68115942028987" y="138.61607142857142"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="location" catalog="system" width="64" height="56"/>
+        <image name="minus" catalog="system" width="64" height="12"/>
+        <image name="plus" catalog="system" width="64" height="56"/>
+    </resources>
 </document>

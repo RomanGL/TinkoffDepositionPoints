@@ -6,38 +6,21 @@
 //  Copyright © 2020 r.gladkikh. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 public final class ImageLoadOperation: Operation {
-    private let data: Data?
-    
+    public var input: Data?
     public private(set) var output: UIImage?
-    public var input: Data? {
-        if let inputData = data {
-            return inputData
-        }
-        
-        let dataProvider = dependencies
-            .filter { $0 is DataPass }
-            .first as? DataPass
-        
-        return dataProvider?.data
-    }
     
     public init(data: Data?) {
-        self.data = data
+        self.input = data
         super.init()
     }
     
     public override func main() {
-        if let inputData = input {
-            output = UIImage(data: inputData)
+        if isCancelled { return }
+        if let input = input {
+            output = UIImage(data: input)
         }
     }
-}
-
-// MARK: - ImagePass
-extension ImageLoadOperation: ImagePass {
-    public var image: UIImage? { output }
 }
