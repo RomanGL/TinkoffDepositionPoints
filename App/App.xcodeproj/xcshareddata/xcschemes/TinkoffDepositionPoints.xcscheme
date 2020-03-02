@@ -29,7 +29,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4186BA5B23F695E1002D8B8E"
-               BuildableName = "App.app"
+               BuildableName = "Tinkoff Deposition Points.app"
                BlueprintName = "App"
                ReferencedContainer = "container:App.xcodeproj">
             </BuildableReference>
@@ -59,7 +59,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4186BA5B23F695E1002D8B8E"
-            BuildableName = "App.app"
+            BuildableName = "Tinkoff Deposition Points.app"
             BlueprintName = "App"
             ReferencedContainer = "container:App.xcodeproj">
          </BuildableReference>
@@ -76,7 +76,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4186BA5B23F695E1002D8B8E"
-            BuildableName = "App.app"
+            BuildableName = "Tinkoff Deposition Points.app"
             BlueprintName = "App"
             ReferencedContainer = "container:App.xcodeproj">
          </BuildableReference>

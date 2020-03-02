@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4116142D240D120F00BF5DFC /* StringTakeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4116142C240D120F00BF5DFC /* StringTakeOperation.swift */; };
+		4116142F240D151700BF5DFC /* StringOutputOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4116142E240D151700BF5DFC /* StringOutputOperation.swift */; };
 		417CE277240A7320005273EC /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417CE276240A7320005273EC /* UIColorExtensions.swift */; };
 		4186BA6023F695E1002D8B8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4186BA5F23F695E1002D8B8E /* AppDelegate.swift */; };
 		4186BA6223F695E1002D8B8E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4186BA6123F695E1002D8B8E /* SceneDelegate.swift */; };
@@ -22,6 +24,15 @@
 		4191A49C23FD43D2007C1A3D /* DepositionPointsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4191A49B23FD43D2007C1A3D /* DepositionPointsService.swift */; };
 		4191A4EC23FD6C00007C1A3D /* TinkoffApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4191A4EB23FD6C00007C1A3D /* TinkoffApi.framework */; };
 		4191A4ED23FD6C00007C1A3D /* TinkoffApi.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4191A4EB23FD6C00007C1A3D /* TinkoffApi.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		41D2F2DF240C098B00A2824A /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D2F2DE240C098B00A2824A /* AsyncOperation.swift */; };
+		41D2F2E2240CD5DF00A2824A /* ObtainDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D2F2E1240CD5DF00A2824A /* ObtainDataOperation.swift */; };
+		41E90308240CDB3F00984BF7 /* DataPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E90307240CDB3F00984BF7 /* DataPass.swift */; };
+		41E9030A240CDC1400984BF7 /* ImageLoadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E90309240CDC1400984BF7 /* ImageLoadOperation.swift */; };
+		41E9030C240CDD8D00984BF7 /* ImagePass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E9030B240CDD8D00984BF7 /* ImagePass.swift */; };
+		41E90310240CE4F900984BF7 /* ImageOutputOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E9030F240CE4F900984BF7 /* ImageOutputOperation.swift */; };
+		41E90312240CE52300984BF7 /* ImageTakeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E90311240CE52300984BF7 /* ImageTakeOperation.swift */; };
+		41E90314240D07FA00984BF7 /* ObtainHttpHeaderOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E90313240D07FA00984BF7 /* ObtainHttpHeaderOperation.swift */; };
+		41E90316240D0AC600984BF7 /* StringPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E90315240D0AC600984BF7 /* StringPass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,8 +50,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4116142C240D120F00BF5DFC /* StringTakeOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringTakeOperation.swift; sourceTree = "<group>"; };
+		4116142E240D151700BF5DFC /* StringOutputOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringOutputOperation.swift; sourceTree = "<group>"; };
 		417CE276240A7320005273EC /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
-		4186BA5C23F695E1002D8B8E /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4186BA5C23F695E1002D8B8E /* Tinkoff Deposition Points.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tinkoff Deposition Points.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4186BA5F23F695E1002D8B8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4186BA6123F695E1002D8B8E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		4186BA6323F695E1002D8B8E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +68,15 @@
 		4191A49923FD3567007C1A3D /* MKMapViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapViewExtensions.swift; sourceTree = "<group>"; };
 		4191A49B23FD43D2007C1A3D /* DepositionPointsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositionPointsService.swift; sourceTree = "<group>"; };
 		4191A4EB23FD6C00007C1A3D /* TinkoffApi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TinkoffApi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		41D2F2DE240C098B00A2824A /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
+		41D2F2E1240CD5DF00A2824A /* ObtainDataOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObtainDataOperation.swift; sourceTree = "<group>"; };
+		41E90307240CDB3F00984BF7 /* DataPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPass.swift; sourceTree = "<group>"; };
+		41E90309240CDC1400984BF7 /* ImageLoadOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadOperation.swift; sourceTree = "<group>"; };
+		41E9030B240CDD8D00984BF7 /* ImagePass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePass.swift; sourceTree = "<group>"; };
+		41E9030F240CE4F900984BF7 /* ImageOutputOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageOutputOperation.swift; sourceTree = "<group>"; };
+		41E90311240CE52300984BF7 /* ImageTakeOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTakeOperation.swift; sourceTree = "<group>"; };
+		41E90313240D07FA00984BF7 /* ObtainHttpHeaderOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObtainHttpHeaderOperation.swift; sourceTree = "<group>"; };
+		41E90315240D0AC600984BF7 /* StringPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringPass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +103,7 @@
 		4186BA5D23F695E1002D8B8E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4186BA5C23F695E1002D8B8E /* App.app */,
+				4186BA5C23F695E1002D8B8E /* Tinkoff Deposition Points.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -117,8 +139,9 @@
 		418768A423FBC6270053ECC3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				41D2F2E3240CD5E500A2824A /* Common */,
+				41D2F2E0240CD57F00A2824A /* ImageCache */,
 				4191A49B23FD43D2007C1A3D /* DepositionPointsService.swift */,
-				41908F5D24079ACB00820B35 /* ImageCache.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -129,6 +152,32 @@
 				4191A4EB23FD6C00007C1A3D /* TinkoffApi.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		41D2F2E0240CD57F00A2824A /* ImageCache */ = {
+			isa = PBXGroup;
+			children = (
+				41908F5D24079ACB00820B35 /* ImageCache.swift */,
+			);
+			path = ImageCache;
+			sourceTree = "<group>";
+		};
+		41D2F2E3240CD5E500A2824A /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				41E90307240CDB3F00984BF7 /* DataPass.swift */,
+				41E9030B240CDD8D00984BF7 /* ImagePass.swift */,
+				41E90315240D0AC600984BF7 /* StringPass.swift */,
+				41D2F2DE240C098B00A2824A /* AsyncOperation.swift */,
+				41E90311240CE52300984BF7 /* ImageTakeOperation.swift */,
+				4116142C240D120F00BF5DFC /* StringTakeOperation.swift */,
+				41D2F2E1240CD5DF00A2824A /* ObtainDataOperation.swift */,
+				41E90313240D07FA00984BF7 /* ObtainHttpHeaderOperation.swift */,
+				41E90309240CDC1400984BF7 /* ImageLoadOperation.swift */,
+				41E9030F240CE4F900984BF7 /* ImageOutputOperation.swift */,
+				4116142E240D151700BF5DFC /* StringOutputOperation.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,7 +198,7 @@
 			);
 			name = App;
 			productName = TinkoffDepositionPoints;
-			productReference = 4186BA5C23F695E1002D8B8E /* App.app */;
+			productReference = 4186BA5C23F695E1002D8B8E /* Tinkoff Deposition Points.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -203,16 +252,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41E90312240CE52300984BF7 /* ImageTakeOperation.swift in Sources */,
+				41E90316240D0AC600984BF7 /* StringPass.swift in Sources */,
 				41908F5C240795DB00820B35 /* MapPointMarkerView.swift in Sources */,
+				41D2F2DF240C098B00A2824A /* AsyncOperation.swift in Sources */,
 				418768A323FBC4150053ECC3 /* MapDepositionPoint.swift in Sources */,
+				41E90314240D07FA00984BF7 /* ObtainHttpHeaderOperation.swift in Sources */,
+				41E9030C240CDD8D00984BF7 /* ImagePass.swift in Sources */,
 				4191A49C23FD43D2007C1A3D /* DepositionPointsService.swift in Sources */,
+				4116142F240D151700BF5DFC /* StringOutputOperation.swift in Sources */,
 				41908F5E24079ACB00820B35 /* ImageCache.swift in Sources */,
 				4186BA6423F695E1002D8B8E /* MapViewController.swift in Sources */,
+				41D2F2E2240CD5DF00A2824A /* ObtainDataOperation.swift in Sources */,
 				4186BA6023F695E1002D8B8E /* AppDelegate.swift in Sources */,
+				41E9030A240CDC1400984BF7 /* ImageLoadOperation.swift in Sources */,
 				4186BA6223F695E1002D8B8E /* SceneDelegate.swift in Sources */,
 				4191A49A23FD3567007C1A3D /* MKMapViewExtensions.swift in Sources */,
+				4116142D240D120F00BF5DFC /* StringTakeOperation.swift in Sources */,
 				41908F5A2406A8FA00820B35 /* AppError.swift in Sources */,
+				41E90308240CDB3F00984BF7 /* DataPass.swift in Sources */,
 				417CE277240A7320005273EC /* UIColorExtensions.swift in Sources */,
+				41E90310240CE4F900984BF7 /* ImageOutputOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,7 +424,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.romangl.TinkoffDepositionPoints;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Tinkoff Deposition Points";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -382,7 +442,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.romangl.TinkoffDepositionPoints;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Tinkoff Deposition Points";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

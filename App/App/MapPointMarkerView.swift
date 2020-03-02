@@ -11,7 +11,6 @@ import MapKit
 
 class MapPointMarkerView: MKMarkerAnnotationView {
     
-    
     override var annotation: MKAnnotation? {
         willSet {
             guard let mapPoint = newValue as? MapDepositionPoint else { return }
@@ -20,22 +19,20 @@ class MapPointMarkerView: MKMarkerAnnotationView {
             animatesWhenAdded = true
             markerTintColor = mapPoint.color
             glyphText = mapPoint.glyph
+            leftCalloutAccessoryView = nil
             
             ImageCache.shared.obtainImage(mapPoint) { result in
+                guard let result = result else { return }
+                
                 DispatchQueue.main.async { [weak self] in
-                    let currentPoint = self?.annotation as? MapDepositionPoint
-                    if currentPoint != mapPoint { return }
+                    guard let self = self else { return }
+                    guard let currentPoint = self.annotation as? MapDepositionPoint,
+                    currentPoint === mapPoint else { return }
                     
-                    switch result {
-                    case .success(let image):
-                        let imageView = UIImageView(image: image)
-                        imageView.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-                        
-                        self?.leftCalloutAccessoryView = imageView
-                        
-                    case .failure(_):
-                        return
-                    }
+                    let imageView = UIImageView(image: result)
+                    imageView.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+                    
+                    self.leftCalloutAccessoryView = imageView
                 }
             }
         }
