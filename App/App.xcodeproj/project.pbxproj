@@ -14,6 +14,7 @@
 		4186BA6723F695E1002D8B8E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4186BA6523F695E1002D8B8E /* Main.storyboard */; };
 		4186BA6923F695E1002D8B8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4186BA6823F695E1002D8B8E /* Assets.xcassets */; };
 		4186BA6C23F695E1002D8B8E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4186BA6A23F695E1002D8B8E /* LaunchScreen.storyboard */; };
+		41873932240ECB9E006CEBFD /* AppModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41873930240ECB9E006CEBFD /* AppModel.xcdatamodeld */; };
 		418768A323FBC4150053ECC3 /* MapDepositionPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418768A223FBC4150053ECC3 /* MapDepositionPoint.swift */; };
 		418EDC41240D423D00317B2D /* HttpRequestOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418EDC40240D423D00317B2D /* HttpRequestOperation.swift */; };
 		41908F5A2406A8FA00820B35 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41908F592406A8FA00820B35 /* AppError.swift */; };
@@ -51,6 +52,7 @@
 		4186BA6823F695E1002D8B8E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4186BA6B23F695E1002D8B8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4186BA6D23F695E1002D8B8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		41873931240ECB9E006CEBFD /* AppModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AppModel.xcdatamodel; sourceTree = "<group>"; };
 		418768A223FBC4150053ECC3 /* MapDepositionPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDepositionPoint.swift; sourceTree = "<group>"; };
 		418EDC40240D423D00317B2D /* HttpRequestOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpRequestOperation.swift; sourceTree = "<group>"; };
 		41908F592406A8FA00820B35 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				41908F592406A8FA00820B35 /* AppError.swift */,
 				41908F5B240795DB00820B35 /* MapPointMarkerView.swift */,
 				417CE276240A7320005273EC /* UIColorExtensions.swift */,
+				41873930240ECB9E006CEBFD /* AppModel.xcdatamodeld */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				41908F5A2406A8FA00820B35 /* AppError.swift in Sources */,
 				417CE277240A7320005273EC /* UIColorExtensions.swift in Sources */,
 				418EDC41240D423D00317B2D /* HttpRequestOperation.swift in Sources */,
+				41873932240ECB9E006CEBFD /* AppModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +442,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		41873930240ECB9E006CEBFD /* AppModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				41873931240ECB9E006CEBFD /* AppModel.xcdatamodel */,
+			);
+			currentVersion = 41873931240ECB9E006CEBFD /* AppModel.xcdatamodel */;
+			path = AppModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 4186BA5423F695E1002D8B8E /* Project object */;
 }

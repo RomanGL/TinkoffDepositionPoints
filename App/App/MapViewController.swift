@@ -14,13 +14,12 @@ final class MapViewController: UIViewController {
     /// Location of Moscow
     private static let defaultLocation = CLLocation(latitude: 55.751244, longitude: 37.618423)
     private static let defaultViewRadius: CLLocationDistance = 1000 // Meters
-    private static let mapAnnotationViewReuseId = "AnnotationViewId"
     
     @IBOutlet weak var mapView: MKMapView!
     private let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
-        mapView.register(MapPointMarkerView.self, forAnnotationViewWithReuseIdentifier: MapViewController.mapAnnotationViewReuseId)
+        mapView.register(MapPointMarkerView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         
         checkLocationAuthorizationStatus()
         
@@ -64,12 +63,12 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard let annotation = annotation as? MapDepositionPoint else { return nil }
         
-        if let view = mapView.dequeueReusableAnnotationView(withIdentifier: MapViewController.mapAnnotationViewReuseId) {
+        if let view = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier) {
             view.annotation = annotation
             return view
         } else {
             let markerView = MKMarkerAnnotationView(annotation: annotation,
-                                                    reuseIdentifier: MapViewController.mapAnnotationViewReuseId)
+                                                    reuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
             markerView.canShowCallout = true
             markerView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
             
