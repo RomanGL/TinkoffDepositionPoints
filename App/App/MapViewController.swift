@@ -10,15 +10,14 @@ import UIKit
 import MapKit
 import TinkoffApi
 
-class MapViewController: UIViewController {
+final class MapViewController: UIViewController {
     /// Location of Moscow
     private static let defaultLocation = CLLocation(latitude: 55.751244, longitude: 37.618423)
     private static let defaultViewRadius: CLLocationDistance = 1000 // Meters
     private static let mapAnnotationViewReuseId = "AnnotationViewId"
     
-    private let locationManager = CLLocationManager()
-    
     @IBOutlet weak var mapView: MKMapView!
+    private let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         mapView.register(MapPointMarkerView.self, forAnnotationViewWithReuseIdentifier: MapViewController.mapAnnotationViewReuseId)
@@ -31,41 +30,25 @@ class MapViewController: UIViewController {
         loadPoints(around: location.coordinate, withRadius: MapViewController.defaultViewRadius)
     }
     
-    @IBAction func geoButtonClick(_ sender: Any) {
+    @IBAction func geoButtonAction(_ sender: Any) {
         guard let location = locationManager.location else { return }
         
         let radius = mapView.currentRadius()
         centerMapOn(coordinate: location.coordinate, withRadius: radius)
     }
     
-    private func loadPoints(around coordinate: CLLocationCoordinate2D, withRadius radius: CLLocationDistance) {
-        let radius = Int(mapView.currentRadius())
-        DepositionPointsService.shared.obtainPoints(latitude: coordinate.latitude,
-                                                    longitude: coordinate.longitude,
-                                                    radius: radius)
-        { result in
-            DispatchQueue.main.async { [weak self] in
-                switch result {
-                case .success(let points):
-                    self?.handlePoints(points)
-                case .failure(let error):
-                    self?.handleError(error)
-                }
-            }
-        }
-    }
-    
-    private func handlePoints(_ points: [MapDepositionPoint]) {
-        mapView.removeAnnotations(mapView.annotations)
-        mapView.addAnnotations(points)
-    }
-    
-    private func checkLocationAuthorizationStatus() {
-        if CLLocationManager.authorizationStatus() != .authorizedWhenInUse {
-            locationManager.requestWhenInUseAuthorization()
-        }
+    @IBAction func zoomInAction(_ sender: Any) {
+        let radius = mapView.currentRadius()
+        let coordinate = mapView.centerCoordinate;
         
-        mapView.showsUserLocation = true
+        centerMapOn(coordinate: coordinate, withRadius: radius / 2)
+    }
+    
+    @IBAction func zoomOutAction(_ sender: Any) {
+        let radius = mapView.currentRadius()
+        let coordinate = mapView.centerCoordinate
+        
+        centerMapOn(coordinate: coordinate, withRadius: radius * 2)
     }
 }
 
@@ -97,6 +80,45 @@ extension MapViewController: MKMapViewDelegate {
 
 // MARK: - Data Loading
 private extension MapViewController {
+    private func loadPoints(around coordinate: CLLocationCoordinate2D, withRadius radius: CLLocationDistance) {
+        let radius = Int(mapView.currentRadius())
+        DepositionPointsService.shared.obtainPoints(latitude: coordinate.latitude,
+                                                    longitude: coordinate.longitude,
+                                                    radius: radius)
+        { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let points):
+                self.handlePoints(points)
+            case .failure(let error):
+                self.handleError(error)
+            }
+        }
+    }
+    
+    private func handleError(_ error: Error) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            
+            let alertController = UIAlertController(title: "An error occured",
+                                                    message: error.localizedDescription,
+                                                    preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(action)
+            
+            self.present(alertController, animated: true)
+        }
+    }
+    
+    private func handlePoints(_ points: [MapDepositionPoint]) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            
+            self.mapView.removeAnnotations(self.mapView.annotations)
+            self.mapView.addAnnotations(points)
+        }
+    }
 }
 
 // MARK: - Utils
@@ -108,17 +130,11 @@ private extension MapViewController {
         mapView.setRegion(coordinateRegion, animated: true)
     }
     
-    private func handleError(_ error: Error) {
-        showErrorAlert(error.localizedDescription)
-    }
-    
-    private func showErrorAlert(_ message: String) {
-        let alertController = UIAlertController(title: "An error occured",
-                                                message: message,
-                                                preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alertController.addAction(action)
+    private func checkLocationAuthorizationStatus() {
+        if CLLocationManager.authorizationStatus() != .authorizedWhenInUse {
+            locationManager.requestWhenInUseAuthorization()
+        }
         
-        present(alertController, animated: true)
+        mapView.showsUserLocation = true
     }
 }
