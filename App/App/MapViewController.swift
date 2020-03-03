@@ -31,6 +31,13 @@ class MapViewController: UIViewController {
         loadPoints(around: location.coordinate, withRadius: MapViewController.defaultViewRadius)
     }
     
+    @IBAction func geoButtonClick(_ sender: Any) {
+        guard let location = locationManager.location else { return }
+        
+        let radius = mapView.currentRadius()
+        centerMapOn(coordinate: location.coordinate, withRadius: radius)
+    }
+    
     private func loadPoints(around coordinate: CLLocationCoordinate2D, withRadius radius: CLLocationDistance) {
         let radius = Int(mapView.currentRadius())
         DepositionPointsService.shared.obtainPoints(latitude: coordinate.latitude,

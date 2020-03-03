@@ -48,6 +48,9 @@
                                         <integer key="value" value="25"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="geoButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dKs-59-pyN"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="67Q-F0-oHm">
                                 <rect key="frame" x="344" y="458" width="50" height="50"/>
