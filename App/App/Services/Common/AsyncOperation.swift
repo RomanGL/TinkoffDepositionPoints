@@ -8,6 +8,8 @@
 
 import Foundation
 
+/// Represents an asynchronous operation.
+/// - Important: Do not use this operation directly. Inherit your own operation from this class.
 open class AsyncOperation: Operation {
     public enum State: String {
         case ready, executing, finished

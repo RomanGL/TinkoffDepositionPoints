@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 import UIKit
 
 typealias ImageHandler = (UIImage?) -> Void
@@ -15,16 +16,22 @@ final class ImageCache {
     private let cache = NSCache<NSString, NSData>()
     private let concurrentQueue = OperationQueue()
     private let serialQueue = OperationQueue()
+    private let appDelegate: AppDelegate
     
     private var completions: [String: [ImageHandler]] = [:]
     
     static let shared = ImageCache()
     
     private init() {
+        guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
+            fatalError("The UIApplication delegate is not an AppDelegate")
+        }
+        
+        appDelegate = delegate
         serialQueue.maxConcurrentOperationCount = 1
     }
     
-    public func obtainImage(_ point: MapDepositionPoint, completion: @escaping ImageHandler) {
+    func obtainImage(_ point: MapDepositionPoint, completion: @escaping ImageHandler) {
         serialQueue.addOperation { [unowned self] in
             let key = point.previewImage
             if let waitingCompletions = self.completions[key] {
@@ -72,18 +79,48 @@ final class ImageCache {
                 return
             }
             
-//            if lastModified != "TODO: Core Data" {
-//                self.reloadImage(point)
-//                return
-//            }
-            
-            self.raiseCompletions(image, point: point)
+            self.compareLastModified(lastModified: lastModified, image: image, point: point)
         }
         
         handler.addDependency(headRequest)
         handler.addDependency(imageLoad)
         
         concurrentQueue.addOperations([headRequest, imageLoad, handler], waitUntilFinished: false)
+    }
+    
+    private func compareLastModified(lastModified: String, image: UIImage, point: MapDepositionPoint) {
+        let container = CoreDataStack.shared.persistentContainer
+        
+        let reloadOperation = BlockOperation { [unowned self] in self.reloadImage(point) }
+        let raiseOperation = BlockOperation { [unowned self] in self.raiseCompletions(image, point: point) }
+        
+        let coreDataOperation = CoreDataBackgroundOperation(container: container) { [unowned self] context in
+            let fetchRequest = CachedIcon.imageNameFetchRequest(imageName: point.previewImage)
+            guard let result = try? context.fetch(fetchRequest) else {
+                reloadOperation.cancel()
+                return
+            }
+            
+            if let oldEntity = result.first {
+                if oldEntity.lastModified != lastModified {
+                    raiseOperation.cancel()
+                    
+                    oldEntity.lastModified = lastModified
+                    return
+                }
+            } else {
+                let newEntity = CachedIcon(context: context)
+                newEntity.imageName = point.previewImage
+                newEntity.lastModified = lastModified
+            }
+            
+            reloadOperation.cancel()
+        }
+        
+        reloadOperation.addDependency(coreDataOperation)
+        raiseOperation.addDependency(coreDataOperation)
+        
+        concurrentQueue.addOperations([coreDataOperation, reloadOperation, raiseOperation], waitUntilFinished: false)
     }
     
     private func reloadImage(_ point: MapDepositionPoint) {
@@ -113,8 +150,8 @@ final class ImageCache {
             }
             
             print("Saving to cache \(point.previewImage)")
+            
             let data = request.data!
-            // TODO: Save Last-Modified to Core Data
             let cacheOperation = BlockOperation { [unowned self] in
                 self.cache.setObject(data as NSData, forKey: NSString(string: point.previewImage))
             }
@@ -123,10 +160,18 @@ final class ImageCache {
                 self.raiseCompletions(image, point: point)
             }
             
+            let container = CoreDataStack.shared.persistentContainer
+            let coreDataOperation = CoreDataBackgroundOperation(container: container) { context in
+                let entity = CachedIcon(context: context)
+                entity.imageName = point.previewImage
+                entity.lastModified = lastModified
+            }
+            
             raiseOperation.addDependency(cacheOperation)
+            raiseOperation.addDependency(coreDataOperation)
             
             OperationQueue.main.addOperation(cacheOperation)
-            self.concurrentQueue.addOperation(raiseOperation)
+            self.concurrentQueue.addOperations([raiseOperation, coreDataOperation], waitUntilFinished: false)
         }
         
         dataHandler.addDependency(request)

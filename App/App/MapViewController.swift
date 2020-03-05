@@ -27,6 +27,9 @@ final class MapViewController: UIViewController {
         
         centerMapOn(coordinate: location.coordinate, withRadius: MapViewController.defaultViewRadius)
         loadPoints(around: location.coordinate, withRadius: MapViewController.defaultViewRadius)
+        
+        let managedContext = CoreDataStack.shared.persistentContainer.viewContext
+        let result = try? managedContext.fetch(CachedIcon.fetchRequest())
     }
     
     @IBAction func geoButtonAction(_ sender: Any) {

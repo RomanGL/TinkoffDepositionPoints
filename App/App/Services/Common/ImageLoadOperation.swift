@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Represents an operation that loads the UIImage from specified Data.
 public final class ImageLoadOperation: Operation {
     public var input: Data?
     public private(set) var output: UIImage?

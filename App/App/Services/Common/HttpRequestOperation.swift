@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Performs a HTTP request by the specified url and the HTTP method.
 public final class HttpRequestOperation: AsyncOperation {
     public enum HttpMethod: String {
         case get, head
