@@ -21,6 +21,10 @@ class MapPointMarkerView: MKMarkerAnnotationView {
             glyphText = mapPoint.glyph
             leftCalloutAccessoryView = nil
             
+            displayPriority = mapPoint.isHighPriority
+                ? .required
+                : .defaultHigh
+            
             ImageCache.shared.obtainImage(mapPoint) { result in
                 guard let result = result else { return }
                 

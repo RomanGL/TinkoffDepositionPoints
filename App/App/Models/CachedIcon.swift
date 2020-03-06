@@ -26,8 +26,18 @@ public extension CachedIcon {
 
 // MARK:- Utils
 extension CachedIcon {
-    func configure(imageName: String, lastModified: String) {
-        self.imageName = imageName
-        self.lastModified = lastModified
+    static func add(imageName: String, lastModified: String, context: NSManagedObjectContext) -> CachedIcon {
+        let entity = CachedIcon(context: context)
+        entity.imageName = imageName
+        entity.lastModified = lastModified
+        
+        return entity
+    }
+    
+    static func getBy(imageName: String, context: NSManagedObjectContext) -> CachedIcon? {
+        let fetchRequest = CachedIcon.imageNameFetchRequest(imageName: imageName)
+        let result = try? context.fetch(fetchRequest)
+        
+        return result?.first
     }
 }

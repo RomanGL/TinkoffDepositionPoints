@@ -16,18 +16,12 @@ final class ImageCache {
     private let cache = NSCache<NSString, NSData>()
     private let concurrentQueue = OperationQueue()
     private let serialQueue = OperationQueue()
-    private let appDelegate: AppDelegate
     
     private var completions: [String: [ImageHandler]] = [:]
     
     static let shared = ImageCache()
     
     private init() {
-        guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
-            fatalError("The UIApplication delegate is not an AppDelegate")
-        }
-        
-        appDelegate = delegate
         serialQueue.maxConcurrentOperationCount = 1
     }
     
@@ -61,7 +55,7 @@ final class ImageCache {
     }
     
     private func handleFromCache(_ data: Data, point: MapDepositionPoint) {
-        let url = getImageUrl(for: point)
+        let url = imageUrl(for: point)
         
         let headRequest = HttpRequestOperation(with: url, method: .head)
         let imageLoad = ImageLoadOperation(data: data)
@@ -94,26 +88,18 @@ final class ImageCache {
         let reloadOperation = BlockOperation { [unowned self] in self.reloadImage(point) }
         let raiseOperation = BlockOperation { [unowned self] in self.raiseCompletions(image, point: point) }
         
-        let coreDataOperation = CoreDataBackgroundOperation(container: container) { [unowned self] context in
-            let fetchRequest = CachedIcon.imageNameFetchRequest(imageName: point.previewImage)
-            guard let result = try? context.fetch(fetchRequest) else {
-                reloadOperation.cancel()
+        let coreDataOperation = CoreDataBackgroundOperation(container: container) { context in
+            let entity = CachedIcon.getBy(imageName: point.previewImage, context: context)
+            if let entity = entity {
+                if entity.lastModified != lastModified {
+                    entity.lastModified = lastModified
+                    raiseOperation.cancel()
+                }
+                
                 return
             }
             
-            if let oldEntity = result.first {
-                if oldEntity.lastModified != lastModified {
-                    raiseOperation.cancel()
-                    
-                    oldEntity.lastModified = lastModified
-                    return
-                }
-            } else {
-                let newEntity = CachedIcon(context: context)
-                newEntity.imageName = point.previewImage
-                newEntity.lastModified = lastModified
-            }
-            
+            _ = CachedIcon.add(imageName: point.previewImage, lastModified: lastModified, context: context)
             reloadOperation.cancel()
         }
         
@@ -124,13 +110,13 @@ final class ImageCache {
     }
     
     private func reloadImage(_ point: MapDepositionPoint) {
-        let url = getImageUrl(for: point)
+        let url = imageUrl(for: point)
         
         let request = HttpRequestOperation(with: url)
         let imageLoad = ImageLoadOperation(data: nil)
         
         // Pass the data to the imageLoad operation.
-        let dataHandler = BlockOperation { [unowned self, unowned request, unowned imageLoad] in
+        let dataHandler = BlockOperation { [unowned request, unowned imageLoad] in
             print("Request completed \(point.previewImage)")
             imageLoad.input = request.data
         }
@@ -161,10 +147,14 @@ final class ImageCache {
             }
             
             let container = CoreDataStack.shared.persistentContainer
+            
             let coreDataOperation = CoreDataBackgroundOperation(container: container) { context in
-                let entity = CachedIcon(context: context)
-                entity.imageName = point.previewImage
-                entity.lastModified = lastModified
+                let entity = CachedIcon.getBy(imageName: point.previewImage, context: context)
+                if let entity = entity {
+                    entity.lastModified = lastModified
+                } else {
+                    _ = CachedIcon.add(imageName: point.previewImage, lastModified: lastModified, context: context)
+                }
             }
             
             raiseOperation.addDependency(cacheOperation)
@@ -196,7 +186,7 @@ final class ImageCache {
         }
     }
     
-    private func getImageUrl(for point: MapDepositionPoint) -> URL {
+    private func imageUrl(for point: MapDepositionPoint) -> URL {
         let urlString = "https://static.tinkoff.ru/icons/deposition-partners-v3/mdpi/\(point.previewImage)"
         let url = URL(string: urlString)
         

@@ -30,6 +30,8 @@ extension MapDepositionPoint {
             : .darkGray
     }
     
+    var isHighPriority: Bool { point.partnerName == "TINKOFF" }
+    
     var glyph: String { String(partner.name.first ?? "?") }
 }
 
