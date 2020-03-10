@@ -9,17 +9,8 @@
 import Foundation
 
 public struct DepositionPartner: Decodable {
-    public let id: String
-    public let externalPartnerId: String
-    
+    public let id: String    
     public let name: String
     public let picture: String
     public let url: String
-    
-    public let hasLocations: Bool
-    public let isMomentary: Bool
-    
-    public let depositionDuration: String
-    public let limitations: String
-    public let description: String
 }

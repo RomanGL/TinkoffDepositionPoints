@@ -12,11 +12,21 @@ import CoreData
 /// Performs a Core Data operation with a new background managed context.
 /// - Important: The operation saving changes automatically.
 public final class CoreDataBackgroundOperation: AsyncOperation {
-    private let persistentContainer: NSPersistentContainer
+    private let container: NSPersistentContainer?
+    private let context: NSManagedObjectContext?
     private let block: (NSManagedObjectContext) -> Void
     
-    public init(container persistentContainer: NSPersistentContainer, block: @escaping (NSManagedObjectContext) -> Void) {
-        self.persistentContainer = persistentContainer
+    public init(container: NSPersistentContainer, block: @escaping (NSManagedObjectContext) -> Void) {
+        self.container = container
+        self.context = nil
+        self.block = block
+        
+        super.init()
+    }
+    
+    public init(context: NSManagedObjectContext, block: @escaping (NSManagedObjectContext) -> Void) {
+        self.container = nil
+        self.context = context
         self.block = block
         
         super.init()
@@ -24,8 +34,8 @@ public final class CoreDataBackgroundOperation: AsyncOperation {
     
     public override func main() {
         if isCancelled { return }
+        guard let taskContext = context ?? container?.newBackgroundContext() else { return }
         
-        let taskContext = persistentContainer.newBackgroundContext()
         taskContext.perform { [weak self, unowned taskContext] in
             guard let self = self else { return }
             if self.isCancelled { return }
@@ -39,7 +49,9 @@ public final class CoreDataBackgroundOperation: AsyncOperation {
                     print("Error: \(error)\nCould not save Core Data context.")
                 }
                 
-                taskContext.reset()
+                if self.context == nil {
+                    taskContext.reset()
+                }
             }
             
             self.state = .finished

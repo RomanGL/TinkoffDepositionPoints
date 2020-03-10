@@ -5,6 +5,9 @@
       location = "group:/Users/r.gladkikh/Sources/TinkoffDepositionPoints/App/App.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:AppData/AppData.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:/Users/r.gladkikh/Sources/TinkoffDepositionPoints/ApiModels/TinkoffApi.xcodeproj">
    </FileRef>
 </Workspace>

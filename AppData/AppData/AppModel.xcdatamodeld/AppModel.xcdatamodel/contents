@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19D76" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CachedIcon" representedClassName=".CachedIconEntity" syncable="YES" codeGenerationType="category">
+        <attribute name="data" optional="YES" attributeType="Binary"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="lastModified" attributeType="String"/>
+    </entity>
+    <entity name="DepositionPartner" representedClassName=".DepositionPartnerEntity" syncable="YES" codeGenerationType="category">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="picture" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="CachedIcon" positionX="-63" positionY="-18" width="128" height="88"/>
+        <element name="DepositionPartner" positionX="-54" positionY="9" width="128" height="103"/>
+    </elements>
+</model>

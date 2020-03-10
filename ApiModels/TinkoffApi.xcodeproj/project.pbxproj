@@ -350,7 +350,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.romangl.TinkoffApi;
+				PRODUCT_BUNDLE_IDENTIFIER = com.romangl.tdp.TinkoffApi;
 				PRODUCT_NAME = TinkoffApi;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -375,7 +375,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.romangl.TinkoffApi;
+				PRODUCT_BUNDLE_IDENTIFIER = com.romangl.tdp.TinkoffApi;
 				PRODUCT_NAME = TinkoffApi;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;

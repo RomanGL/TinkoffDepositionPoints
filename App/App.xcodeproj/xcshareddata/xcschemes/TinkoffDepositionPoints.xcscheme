@@ -28,6 +28,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "418D7691241269790051F8FB"
+               BuildableName = "AppData.framework"
+               BlueprintName = "AppData"
+               ReferencedContainer = "container:../AppData/AppData.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "4186BA5B23F695E1002D8B8E"
                BuildableName = "Tinkoff Deposition Points.app"
                BlueprintName = "App"

@@ -9,13 +9,23 @@
 import Foundation
 import CoreData
 
-final class CoreDataStack {
-    static let shared = CoreDataStack()
+public final class CoreDataStack {
+    public static let shared = CoreDataStack()
     
     private init() {}
     
-    lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "AppModel")
+    public lazy var persistentContainer: NSPersistentContainer = {
+        let bundle = Bundle(for: type(of: self))
+        
+        guard let modelUrl = bundle.url(forResource: "AppModel", withExtension: "momd") else {
+            fatalError("Failed to find AppModel.momd")
+        }
+        
+        guard let objectModel = NSManagedObjectModel(contentsOf: modelUrl) else {
+            fatalError("Failed to create model from file: \(modelUrl)")
+        }
+        
+        let container = NSPersistentContainer(name: "AppData", managedObjectModel: objectModel)
         container.loadPersistentStores() { storeDescription, error in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
