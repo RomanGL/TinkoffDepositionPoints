@@ -24,8 +24,6 @@ final class ImageCache {
         queue.async(flags: .barrier) { [weak self] in
             guard let self = self else { return }
             
-            debugPrint("Waiting \(point.previewImage)")
-            
             if let worker = self.workers[point.previewImage] {
                 let current = self.completions[worker] ?? []
                 self.completions[worker] = current + [completion]
@@ -33,7 +31,7 @@ final class ImageCache {
                 return
             }
             
-            let worker = ImageCacheWorker(point: point, completion: self.finishWorker)
+            let worker = ImageCacheWorker(point: point, completion: self.finishWorker(name:image:))
             worker.start()
             
             self.workers[point.previewImage] = worker
@@ -42,19 +40,17 @@ final class ImageCache {
     }
     
     private func finishWorker(name: String, image: UIImage?) {
-        var completions: [(UIImage?) -> Void]?
+        var waitingCompletions: [(UIImage?) -> Void]?
         
-        queue.sync {
-            if let worker = self.workers.removeValue(forKey: name) {
-                completions = self.completions.removeValue(forKey: worker)
+        queue.sync(flags: .barrier) {
+            if let worker = workers.removeValue(forKey: name) {
+                waitingCompletions = completions.removeValue(forKey: worker)
             }
         }
         
-        if let completions = completions {
-            for completion in completions {
+        if let waitingCompletions = waitingCompletions {
+            for completion in waitingCompletions {
                 completion(image)
-                
-                debugPrint("Completed \(name)")
             }
         }
     }

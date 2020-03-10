@@ -86,12 +86,15 @@ private extension ImageCacheWorker {
                         try? self.context.save()
                     }
                     
+                    // Success
                     self.workerCompletion(self.imageName, image)
-                    return
                 }
+            } else {
+                // Failed
+                self.workerCompletion(self.imageName, nil)
             }
             
-            self.workerCompletion(self.imageName, nil)
+            debugPrint("Completed \(self.imageName)")
         }
     }
 }
