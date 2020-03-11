@@ -9,12 +9,13 @@
 import Foundation
 import MapKit
 import TinkoffApi
+import AppData
 
 final class MapDepositionPoint: NSObject {
     private let point: DepositionPoint
-    private let partner: DepositionPartner
+    private let partner: DepositionPartnerEntity
     
-    init(_ point: DepositionPoint, partner: DepositionPartner) {
+    init(_ point: DepositionPoint, partner: DepositionPartnerEntity) {
         self.point = point
         self.partner = partner
     }
@@ -22,7 +23,7 @@ final class MapDepositionPoint: NSObject {
 
 // MARK: - Properties
 extension MapDepositionPoint {
-    var previewImage: String { partner.picture }
+    var previewImage: String { partner.picture ?? "" }
     
     var color: UIColor {
         point.partnerName == "TINKOFF"
@@ -32,7 +33,7 @@ extension MapDepositionPoint {
     
     var isHighPriority: Bool { point.partnerName == "TINKOFF" }
     
-    var glyph: String { String(partner.name.first ?? "?") }
+    var glyph: String { String(partner.name?.first ?? "?") }
 }
 
 // MARK: - MKAnnotation

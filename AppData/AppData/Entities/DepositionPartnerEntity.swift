@@ -32,7 +32,7 @@ public class DepositionPartnerEntity: NSManagedObject {
 }
 
 // MARK:- Utils
-extension DepositionPartnerEntity {
+public extension DepositionPartnerEntity {
     static func getAll(from context: NSManagedObjectContext) -> [DepositionPartnerEntity] {
         let request: NSFetchRequest<DepositionPartnerEntity> = DepositionPartnerEntity.fetchRequest()
         let result = try? context.fetch(request)

@@ -17,37 +17,28 @@ final class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     private let locationManager = CLLocationManager()
+    private let pointsService = DepositionPointsService.shared
     
     override func viewDidLoad() {
+        locationManager.delegate = self
         mapView.register(MapPointMarkerView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         
         checkLocationAuthorizationStatus()
         
         let location = locationManager.location ?? MapViewController.defaultLocation
-        
-        centerMapOn(coordinate: location.coordinate, withRadius: MapViewController.defaultViewRadius)
-        loadPoints(around: location.coordinate, withRadius: MapViewController.defaultViewRadius)
+        mapView.centerMapOn(coordinate: location.coordinate, withRadius: MapViewController.defaultViewRadius)
     }
     
     @IBAction func geoButtonAction(_ sender: Any) {
-        guard let location = locationManager.location else { return }
-        
-        let radius = mapView.currentRadius()
-        centerMapOn(coordinate: location.coordinate, withRadius: radius)
+        centerMapOnGeolocation()
     }
     
     @IBAction func zoomInAction(_ sender: Any) {
-        let radius = mapView.currentRadius()
-        let coordinate = mapView.centerCoordinate;
-        
-        centerMapOn(coordinate: coordinate, withRadius: radius / 2)
+        mapView.zoomIn()
     }
     
     @IBAction func zoomOutAction(_ sender: Any) {
-        let radius = mapView.currentRadius()
-        let coordinate = mapView.centerCoordinate
-        
-        centerMapOn(coordinate: coordinate, withRadius: radius * 2)
+        mapView.zoomOut()
     }
 }
 
@@ -77,33 +68,46 @@ extension MapViewController: MKMapViewDelegate {
     }
 }
 
-// MARK: - Data Loading
-private extension MapViewController {
-    private func loadPoints(around coordinate: CLLocationCoordinate2D, withRadius radius: CLLocationDistance) {
-        let radius = Int(mapView.currentRadius())
-        DepositionPointsService.shared.obtainPoints(latitude: coordinate.latitude,
-                                                    longitude: coordinate.longitude,
-                                                    radius: radius)
-        { [weak self] result in
-            guard let self = self else { return }
-            
-            switch result {
-            case .success(let points):
-                self.handlePoints(points)
-            case .failure(let error):
-                self.handleError(error)
-            }
+// MARK:- CLLocationManagerDelegate
+extension MapViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if (status == .authorizedAlways || status == .authorizedWhenInUse) {
+            manager.startUpdatingLocation()
         }
     }
     
-    private func handleError(_ error: Error) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+    }
+}
+
+// MARK: - Data Loading
+private extension MapViewController {
+    
+    private func loadPoints(around coordinate: CLLocationCoordinate2D, withRadius radius: CLLocationDistance) {
+        let radius = Int(mapView.currentRadius())
+        let lat = coordinate.latitude
+        let lon = coordinate.longitude
+        
+        pointsService.obtainPoints(latitude: lat, longitude: lon, radius: radius) { [weak self] points in
+            guard let self = self else { return }
+            guard let points = points else {
+                self.showLoadingError()
+                return
+            }
+            
+            self.handlePoints(points)
+        }
+    }
+    
+    private func showLoadingError() {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             
-            let alertController = UIAlertController(title: "An error occured",
-                                                    message: error.localizedDescription,
+            let alertController = UIAlertController(title: "An error occurred",
+                                                    message: "We are sorry, an error occurred during loading deposition points.",
                                                     preferredStyle: .alert)
-            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+            let action = UIAlertAction(title: "Very sad", style: .default, handler: nil)
             alertController.addAction(action)
             
             self.present(alertController, animated: true)
@@ -122,14 +126,14 @@ private extension MapViewController {
 
 // MARK: - Utils
 private extension MapViewController {
-    private func centerMapOn(coordinate: CLLocationCoordinate2D, withRadius radius: CLLocationDistance) {
-        let coordinateRegion = MKCoordinateRegion.init(center: coordinate,
-                                                       latitudinalMeters: radius,
-                                                       longitudinalMeters: radius)
-        mapView.setRegion(coordinateRegion, animated: true)
+    
+    func centerMapOnGeolocation() {
+        guard let location = locationManager.location else { return }
+        
+        mapView.centerMapOn(coordinate: location.coordinate, withRadius: MapViewController.defaultViewRadius)
     }
     
-    private func checkLocationAuthorizationStatus() {
+    func checkLocationAuthorizationStatus() {
         if CLLocationManager.authorizationStatus() != .authorizedWhenInUse {
             locationManager.requestWhenInUseAuthorization()
         }

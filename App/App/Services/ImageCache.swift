@@ -17,11 +17,11 @@ final class ImageCache {
     static let shared = ImageCache()
     
     private init() {
-        queue = DispatchQueue(label: "com.romangl.tdp.ImageCache", attributes: .concurrent)
+        queue = DispatchQueue(label: "com.romangl.tdp.ImageCache", qos: .userInitiated)
     }
     
     func obtainImage(_ point: MapDepositionPoint, completion: @escaping (UIImage?) -> Void) {
-        queue.async(flags: .barrier) { [weak self] in
+        queue.async { [weak self] in
             guard let self = self else { return }
             
             if let worker = self.workers[point.previewImage] {
@@ -42,7 +42,7 @@ final class ImageCache {
     private func finishWorker(name: String, image: UIImage?) {
         var waitingCompletions: [(UIImage?) -> Void]?
         
-        queue.sync(flags: .barrier) {
+        queue.sync {
             if let worker = workers.removeValue(forKey: name) {
                 waitingCompletions = completions.removeValue(forKey: worker)
             }

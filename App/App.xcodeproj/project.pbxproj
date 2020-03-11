@@ -24,9 +24,10 @@
 		41908F5A2406A8FA00820B35 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41908F592406A8FA00820B35 /* AppError.swift */; };
 		41908F5C240795DB00820B35 /* MapPointMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41908F5B240795DB00820B35 /* MapPointMarkerView.swift */; };
 		4191A49A23FD3567007C1A3D /* MKMapViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4191A49923FD3567007C1A3D /* MKMapViewExtensions.swift */; };
-		4191A49C23FD43D2007C1A3D /* DepositionPointsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4191A49B23FD43D2007C1A3D /* DepositionPointsService.swift */; };
 		4191A4EC23FD6C00007C1A3D /* TinkoffApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4191A4EB23FD6C00007C1A3D /* TinkoffApi.framework */; };
 		4191A4ED23FD6C00007C1A3D /* TinkoffApi.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4191A4EB23FD6C00007C1A3D /* TinkoffApi.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		41A248FA2417C37700AC4744 /* DepositionPointsServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A248F92417C37700AC4744 /* DepositionPointsServices.swift */; };
+		41A248FC2417CACC00AC4744 /* DepositionPartnersCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A248FB2417CACC00AC4744 /* DepositionPartnersCache.swift */; };
 		41D2F2DF240C098B00A2824A /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D2F2DE240C098B00A2824A /* AsyncOperation.swift */; };
 		41E9030A240CDC1400984BF7 /* ImageLoadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E90309240CDC1400984BF7 /* ImageLoadOperation.swift */; };
 /* End PBXBuildFile section */
@@ -65,8 +66,9 @@
 		41908F592406A8FA00820B35 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		41908F5B240795DB00820B35 /* MapPointMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPointMarkerView.swift; sourceTree = "<group>"; };
 		4191A49923FD3567007C1A3D /* MKMapViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapViewExtensions.swift; sourceTree = "<group>"; };
-		4191A49B23FD43D2007C1A3D /* DepositionPointsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositionPointsService.swift; sourceTree = "<group>"; };
 		4191A4EB23FD6C00007C1A3D /* TinkoffApi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TinkoffApi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		41A248F92417C37700AC4744 /* DepositionPointsServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositionPointsServices.swift; sourceTree = "<group>"; };
+		41A248FB2417CACC00AC4744 /* DepositionPartnersCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositionPartnersCache.swift; sourceTree = "<group>"; };
 		41D2F2DE240C098B00A2824A /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
 		41E90309240CDC1400984BF7 /* ImageLoadOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadOperation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -135,7 +137,8 @@
 				41D2F2E3240CD5E500A2824A /* Common */,
 				418D76BC24176C5A0051F8FB /* ImageCache.swift */,
 				418D76BA241768120051F8FB /* ImageCacheWorker.swift */,
-				4191A49B23FD43D2007C1A3D /* DepositionPointsService.swift */,
+				41A248FB2417CACC00AC4744 /* DepositionPartnersCache.swift */,
+				41A248F92417C37700AC4744 /* DepositionPointsServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -237,13 +240,14 @@
 				418D76BD24176C5A0051F8FB /* ImageCache.swift in Sources */,
 				418768A323FBC4150053ECC3 /* MapDepositionPoint.swift in Sources */,
 				418D76BB241768120051F8FB /* ImageCacheWorker.swift in Sources */,
-				4191A49C23FD43D2007C1A3D /* DepositionPointsService.swift in Sources */,
 				4186BA6423F695E1002D8B8E /* MapViewController.swift in Sources */,
 				4186BA6023F695E1002D8B8E /* AppDelegate.swift in Sources */,
+				41A248FA2417C37700AC4744 /* DepositionPointsServices.swift in Sources */,
 				41E9030A240CDC1400984BF7 /* ImageLoadOperation.swift in Sources */,
 				4186BA6223F695E1002D8B8E /* SceneDelegate.swift in Sources */,
 				4182018C241137E8000CC2E1 /* CoreDataBackgroundOperation.swift in Sources */,
 				4191A49A23FD3567007C1A3D /* MKMapViewExtensions.swift in Sources */,
+				41A248FC2417CACC00AC4744 /* DepositionPartnersCache.swift in Sources */,
 				41908F5A2406A8FA00820B35 /* AppError.swift in Sources */,
 				417CE277240A7320005273EC /* UIColorExtensions.swift in Sources */,
 				418EDC41240D423D00317B2D /* HttpRequestOperation.swift in Sources */,
