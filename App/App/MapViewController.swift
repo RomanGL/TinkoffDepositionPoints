@@ -16,8 +16,10 @@ final class MapViewController: UIViewController {
     private static let defaultViewRadius: CLLocationDistance = 1000 // Meters
     
     @IBOutlet weak var mapView: MKMapView!
+    
     private let locationManager = CLLocationManager()
     private let pointsService = DepositionPointsService.shared
+    private var isLocationDetermined = false
     
     override func viewDidLoad() {
         locationManager.delegate = self
@@ -85,7 +87,12 @@ extension MapViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard !isLocationDetermined else { return }
         
+        if let location = locations.first {
+            isLocationDetermined = true
+            mapView.centerMapOn(coordinate: location.coordinate, withRadius: MapViewController.defaultViewRadius)
+        }
     }
 }
 
