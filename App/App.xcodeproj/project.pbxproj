@@ -45,7 +45,7 @@
 
 /* Begin PBXFileReference section */
 		417CE276240A7320005273EC /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
-		4186BA5C23F695E1002D8B8E /* Tinkoff Deposition Points.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tinkoff Deposition Points.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4186BA5C23F695E1002D8B8E /* Tinkoff Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tinkoff Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4186BA5F23F695E1002D8B8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4186BA6123F695E1002D8B8E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		4186BA6323F695E1002D8B8E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -90,7 +90,7 @@
 		4186BA5D23F695E1002D8B8E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4186BA5C23F695E1002D8B8E /* Tinkoff Deposition Points.app */,
+				4186BA5C23F695E1002D8B8E /* Tinkoff Map.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -161,7 +161,7 @@
 			);
 			name = App;
 			productName = TinkoffDepositionPoints;
-			productReference = 4186BA5C23F695E1002D8B8E /* Tinkoff Deposition Points.app */;
+			productReference = 4186BA5C23F695E1002D8B8E /* Tinkoff Map.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -378,7 +378,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.romangl.tdp;
-				PRODUCT_NAME = "Tinkoff Deposition Points";
+				PRODUCT_NAME = "Tinkoff Map";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -396,7 +396,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.romangl.tdp;
-				PRODUCT_NAME = "Tinkoff Deposition Points";
+				PRODUCT_NAME = "Tinkoff Map";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
