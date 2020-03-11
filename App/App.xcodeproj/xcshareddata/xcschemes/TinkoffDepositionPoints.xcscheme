@@ -14,10 +14,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "410839492418C8C300F1FBF6"
+               BuildableName = "AppCommon.framework"
+               BlueprintName = "AppCommon"
+               ReferencedContainer = "container:../AppCommon/AppCommon.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "4191A4C123FD5B10007C1A3D"
                BuildableName = "TinkoffApi.framework"
                BlueprintName = "TinkoffApi"
-               ReferencedContainer = "container:../ApiModels/TinkoffApi.xcodeproj">
+               ReferencedContainer = "container:../TinkoffApi/TinkoffApi.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry

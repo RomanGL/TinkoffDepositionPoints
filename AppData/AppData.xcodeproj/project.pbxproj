@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		410839652418C93000F1FBF6 /* AppCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 410839642418C93000F1FBF6 /* AppCommon.framework */; };
+		410839662418C93000F1FBF6 /* AppCommon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 410839642418C93000F1FBF6 /* AppCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		410839692418C96E00F1FBF6 /* CoreDataBackgroundOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410839682418C96E00F1FBF6 /* CoreDataBackgroundOperation.swift */; };
 		418D7697241269790051F8FB /* AppData.h in Headers */ = {isa = PBXBuildFile; fileRef = 418D7695241269790051F8FB /* AppData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		418D76A0241270730051F8FB /* CachedIconEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418D769E241270730051F8FB /* CachedIconEntity.swift */; };
 		418D76A1241270730051F8FB /* DepositionPartnerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418D769F241270730051F8FB /* DepositionPartnerEntity.swift */; };
@@ -24,6 +27,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				418D76AF2413F74A0051F8FB /* TinkoffApi.framework in Embed Frameworks */,
+				410839662418C93000F1FBF6 /* AppCommon.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -31,6 +35,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		410839642418C93000F1FBF6 /* AppCommon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AppCommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		410839682418C96E00F1FBF6 /* CoreDataBackgroundOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataBackgroundOperation.swift; sourceTree = "<group>"; };
 		418D7692241269790051F8FB /* AppData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		418D7695241269790051F8FB /* AppData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppData.h; sourceTree = "<group>"; };
 		418D7696241269790051F8FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,12 +53,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				418D76AE2413F74A0051F8FB /* TinkoffApi.framework in Frameworks */,
+				410839652418C93000F1FBF6 /* AppCommon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		410839672418C96300F1FBF6 /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				410839682418C96E00F1FBF6 /* CoreDataBackgroundOperation.swift */,
+			);
+			path = Operations;
+			sourceTree = "<group>";
+		};
 		418D7688241269790051F8FB = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				418D769D2412705E0051F8FB /* Entities */,
+				410839672418C96300F1FBF6 /* Operations */,
 				418D76A7241271D90051F8FB /* CoreDataStack.swift */,
 				418D7695241269790051F8FB /* AppData.h */,
 				418D7696241269790051F8FB /* Info.plist */,
@@ -94,6 +110,7 @@
 		418D76AC2413F74A0051F8FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				410839642418C93000F1FBF6 /* AppCommon.framework */,
 				418D76AD2413F74A0051F8FB /* TinkoffApi.framework */,
 			);
 			name = Frameworks;
@@ -183,6 +200,7 @@
 				418D76A8241271D90051F8FB /* CoreDataStack.swift in Sources */,
 				418D76A0241270730051F8FB /* CachedIconEntity.swift in Sources */,
 				418D76A1241270730051F8FB /* DepositionPartnerEntity.swift in Sources */,
+				410839692418C96E00F1FBF6 /* CoreDataBackgroundOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

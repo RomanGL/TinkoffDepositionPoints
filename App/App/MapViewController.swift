@@ -44,6 +44,7 @@ final class MapViewController: UIViewController {
 
 // MARK: - MKMapViewDelegate
 extension MapViewController: MKMapViewDelegate {
+    
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         let radius = mapView.currentRadius()
         let currentCoordinate = mapView.centerCoordinate
@@ -66,10 +67,17 @@ extension MapViewController: MKMapViewDelegate {
             return markerView
         }
     }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        guard let annotationView = view as? MapPointMarkerView else { return }
+        
+        annotationView.loadImage()
+    }
 }
 
 // MARK:- CLLocationManagerDelegate
 extension MapViewController: CLLocationManagerDelegate {
+    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if (status == .authorizedAlways || status == .authorizedWhenInUse) {
             manager.startUpdatingLocation()

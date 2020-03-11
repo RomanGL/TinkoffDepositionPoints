@@ -1,6 +1,6 @@
 //
 //  AsyncOperation.swift
-//  App
+//  AppCommon
 //
 //  Created by r.gladkikh on 01.03.2020.
 //  Copyright © 2020 r.gladkikh. All rights reserved.

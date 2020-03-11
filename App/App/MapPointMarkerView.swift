@@ -10,34 +10,44 @@ import UIKit
 import MapKit
 
 class MapPointMarkerView: MKMarkerAnnotationView {
+    private var pointAnnotation: MapDepositionPoint?
     
     override var annotation: MKAnnotation? {
         willSet {
-            guard let mapPoint = newValue as? MapDepositionPoint else { return }
+            self.pointAnnotation = newValue as? MapDepositionPoint
+            guard let pointAnnotation = pointAnnotation else { return }
             
             canShowCallout = true
             animatesWhenAdded = true
-            markerTintColor = mapPoint.color
-            glyphText = mapPoint.glyph
+            markerTintColor = pointAnnotation.color
+            glyphText = pointAnnotation.glyph
             leftCalloutAccessoryView = nil
             
-            displayPriority = mapPoint.isHighPriority
+            displayPriority = pointAnnotation.isHighPriority
                 ? .required
                 : .defaultHigh
+        }
+    }
+    
+    func loadImage() {
+        guard let point = pointAnnotation else { return }
+        
+        let indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        indicator.startAnimating()
+        
+        self.leftCalloutAccessoryView = indicator
             
-            ImageCache.shared.obtainImage(mapPoint) { result in
-                guard let result = result else { return }
-                
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    guard let currentPoint = self.annotation as? MapDepositionPoint,
-                    currentPoint === mapPoint else { return }
-                    
-                    let imageView = UIImageView(image: result)
-                    imageView.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-                    
-                    self.leftCalloutAccessoryView = imageView
-                }
+        ImageCache.shared.obtainImage(point) { result in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                guard point == self.pointAnnotation else { return }
+
+                indicator.stopAnimating()
+
+                let imageView = UIImageView(image: result ?? UIImage(systemName: "xmark.circle"))
+                imageView.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+
+                self.leftCalloutAccessoryView = imageView
             }
         }
     }

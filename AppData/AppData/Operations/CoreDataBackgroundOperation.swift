@@ -1,6 +1,6 @@
 //
 //  NSManagedObjectContextOperation.swift
-//  App
+//  AppData
 //
 //  Created by r.gladkikh on 05.03.2020.
 //  Copyright © 2020 r.gladkikh. All rights reserved.
@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import AppCommon
 
 /// Performs a Core Data operation with a new background managed context.
 /// - Important: The operation saving changes automatically.
